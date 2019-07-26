@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{progit}
+Scott Chacon and Ben Straub.
+\newblock {\em Pro Git}.
+\newblock Apress, Pamekasan, 2014.
+
+\bibitem{ref:freecodecamp}
+Developer Davo.
+\newblock Gatsby vs hugo, a detailed comparison.
+\newblock
+  https://www.freecodecamp.org/news/gatsby-vs-hugo-a-detailed-comparison-e78d94f640fc/,
+  2018.
+
+\bibitem{thedocker}
+James Turnbull.
+\newblock {\em The Docker Book}.
+\newblock Lulu.com, 2018.
+
+\end{thebibliography}
