@@ -2,8 +2,8 @@
 
 ## Prisilia Ines
 ### ICT
-### 00000018075
-
+### NIM 00000018075
+### Universitas Multimedia Nusantara
 
 **IMPLEMENTASI FRAMEWORK HUGO PADA WEBSITE PROFIL PERUSAHAAN**
 
