@@ -1,8 +1,17 @@
-%\documentclass[12pt]{article}
-\documentclass[12pt,titlepage,oneside,final]{book}
+\documentclass[12pt,oneside]{book}
 
+
+%%%%%%%%%%%%%%%%%
+% Prisilia Ines %
+% UMN - TI      %
+%%%%%%%%%%%%%%%%%
+\title{Laporan Magang}
+\author{Prisilia Ines}
+%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[a4paper,top=3cm,bottom=3cm,right=3cm, left=4cm]{geometry}
+
+\usepackage{titlesec}
 \usepackage{times}
 \usepackage{subcaption}
 \usepackage{lipsum}
@@ -15,6 +24,31 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{multicol}
+
+
+\makeatletter
+\def\@makechapterhead#1{%
+  %%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \normalfont \bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \normalsize \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\def\@makeschapterhead#1{%
+  %%%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \centering
+    \normalfont
+    \interlinepenalty\@M
+    \normalfont \bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           %
@@ -31,7 +65,21 @@
 }                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%
+% set space 1.5 pt  % 
+%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage[utf8]{inputenc}
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set untuk menjorok untuk awal paragraf %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{indentfirst}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Rename cot, list figure, list table      %
@@ -60,134 +108,83 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage{float}
-%\floatstyle{plaintop}
-%\restylefloat{table}
-%\usepackage[tableposition=top]{caption}
 
-\usepackage{chngcntr}
-\counterwithin{figure}{section}
-\counterwithin{table}{section}
+%%%%%%%%%%%%%%%%%%
+% custom chapter %
+%%%%%%%%%%%%%%%%%%
+\usepackage{regexpatch}
+
+\newcommand{\mychapter}[2]{%
+  \setcounter{chapter}{#1}% Set chapter counter
+  \setcounter{section}{0}% Reset \section counter
+  \def\chaptoc{#2}%
+  \xpatchcmd*{\chaptoc}{\\}{}{}{}% \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+  \chapter*{#2}
+  \addcontentsline{toc}{chapter}{\chaptoc}
+}
+
+\newcommand{\mychap}[3]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \begin{center}
+      \textbf{#3}
+    \end{center}
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+
+\titleformat{\mychapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titlespacing*{\mychapter}{0pt}{0pt}{0pt}
+
+\usepackage{sectsty}
+\chapterfont{\centering\normalsize}
+
+
+%\usepackage{chngcntr}
+%\counterwithin{figure}{section}
+%\counterwithin{table}{section}
 
 
 \usepackage{amsmath}  
 \numberwithin{equation}{section}
 
-\usepackage{caption}
-\numberwithin{figure}{section}
-
-\newcommand*{\appheading}[1][Appendix]{%
-  \setcounter{secnumdepth}{0}\section{#1}\setcounter{secnumdepth}{3}%
-  \renewcommand*{\thesubsection}{\Alph{subsection}}
-  \numberwithin{equation}{subsection}
-  \numberwithin{figure}{subsection}
-}
-
+%\usepackage{caption}
+%\numberwithin{figure}{section}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{3}
-\usepackage{lipsum}
 
-\newcommand{\chaptertitleformat}{%
-  \thechapter.\ \chaptername\space \Roman{chapter}%
-}
-
-
-
-% \usepackage{sectsty}
-% \allsectionsfont{\centering}
-
-\title{Laporan Magang}
-\author{Prisilia Ines}
-
-% \date{}
-
-\usepackage{blindtext}
-\usepackage[pagestyles]{titlesec}
-\newpagestyle{main}{\setfoot{}{}{\thepage}}
-\pagestyle{main}
-\assignpagestyle{\chapter}{main}
-
-\usepackage{fancyhdr,lipsum}
-
-\fancypagestyle{frontmatter}{%
-  \pagestyle{plain}% Just like plain page style
-  \fancyfoot[C]{\roman{page}}% Roman page number in footer centre
-}
-
-
-\let\oldfrontmatter\frontmatter
-\renewcommand{\frontmatter}{
-  \oldfrontmatter
-  \pagestyle{frontmatter}
-}
-\let\oldmainmatter\mainmatter
-\renewcommand{\mainmatter}{
-  \oldmainmatter
-  \pagestyle{mainmatter}
-}
-
-\usepackage{titlesec}
-\titleformat{\section}[block]{\normalsize\bfseries\filcenter}{}{1em}{}
-\titleformat{\chapter}[block]{\normalsize\bfseries\filcenter}{}{1em}{}
-
-\usepackage[utf8]{inputenc}
-
-\setlength{\parindent}{4em}
-\setlength{\parskip}{1em}
-\renewcommand{\baselinestretch}{1.5}
-
-\usepackage{indentfirst}
-
-
-
-\usepackage{etoolbox,refcount}
-\usepackage{multicol}
-
-\newcounter{countitems}
-\newcounter{nextitemizecount}
-\newcommand{\setupcountitems}{%
-  \stepcounter{nextitemizecount}%
-  \setcounter{countitems}{0}%
-  \preto\item{\stepcounter{countitems}}%
-}
-\makeatletter
-\newcommand{\computecountitems}{%
-  \edef\@currentlabel{\number\c@countitems}%
-  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
-}
-\newcommand{\nextitemizecount}{%
-  \getrefnumber{countitems@\number\c@nextitemizecount}%
-}
-\newcommand{\previtemizecount}{%
-  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
-}
-\makeatother    
-\newenvironment{AutoMultiColItemize}{%
-\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
-\setupcountitems\begin{itemize}}%
-{\end{itemize}%
-\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Page numbering style %
+%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fancyhdr}
-  \fancyhf{}
-  \renewcommand{\headrulewidth}{0pt}
-  \fancyhf[cf]{\thepage}
-  \pagestyle{fancy}
+
+\fancypagestyle{mystyle}{
+\fancyhf{}
+\renewcommand\headrulewidth{0pt}
+\fancyfoot[R]{\thepage}
+}
+
+% Turn on the style
+\pagestyle{plain}
+% Clear the header and footer
+\fancyhead{}
+\fancyfoot{}
+% Set the right side of the footer to be the page number
+\fancyfoot[C]{\thepage}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                           %
+%         isi               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
+\pagestyle{plain}
 \pagenumbering{roman}
-
 
 \input{hal-persetujuan.tex}
 
@@ -201,13 +198,18 @@
 \input{kata-pengantar.tex}
 
 
+\clearpage
 \tableofcontents
+
+\clearpage
 \listoffigures
+
 \clearpage
 \listoftables
 %\usepackage{tabularx}
 
 \clearpage
+\pagestyle{mystyle}
 \pagenumbering{arabic}
 \input{bab1.tex}
 
